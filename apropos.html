@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DMP Creator est une agence créative basée à Kinshasa, RD Congo, spécialisée dans la création de contenus visuels et digitaux.">
+  <title>À propos — DMP Creator</title>
+
+  <style>
+    :root{
+      --bg:#090909;
+      --bg-soft:#111111;
+      --card:#151515;
+      --card-2:#1b1b1b;
+      --text:#f5f1e8;
+      --muted:#a9a49b;
+      --gold:#d7a84a;
+      --gold-light:#f0c86b;
+      --green:#5d9d73;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:22px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    button{font:inherit}
+
+    .container{
+      width:min(92%,var(--max));
+      margin:auto;
+    }
+
+    .section{
+      padding:100px 0;
+      position:relative;
+    }
+
+    .eyebrow{
+      color:var(--gold-light);
+      text-transform:uppercase;
+      letter-spacing:3px;
+      font-size:.75rem;
+      font-weight:700;
+      margin-bottom:15px;
+    }
+
+    .section-title{
+      font-size:clamp(2rem,5vw,4rem);
+      line-height:1.05;
+      margin-bottom:20px;
+      max-width:760px;
+    }
+
+    .section-intro{
+      color:var(--muted);
+      max-width:700px;
+      font-size:1.05rem;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      padding:14px 22px;
+      border-radius:999px;
+      border:1px solid var(--gold);
+      transition:.3s ease;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:var(--gold);
+      color:#111;
+    }
+
+    .btn-primary:hover{
+      background:var(--gold-light);
+      transform:translateY(-2px);
+    }
+
+    .btn-outline{
+      background:transparent;
+      color:var(--text);
+    }
+
+    .btn-outline:hover{
+      background:rgba(215,168,74,.10);
+      transform:translateY(-2px);
+    }
+
+    /* NAVIGATION */
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:rgba(9,9,9,.86);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .logo{
+      font-size:1.25rem;
+      font-weight:900;
+      letter-spacing:1.5px;
+    }
+
+    .logo span{color:var(--gold)}
+
+    .logo-img{height:34px;width:auto;display:block}
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      list-style:none;
+    }
+
+    .nav-links a{
+      color:#d9d5cd;
+      font-size:.92rem;
+      transition:.25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--gold-light);
+    }
+
+    .nav-cta{margin-left:8px}
+
+    .menu-btn{
+      display:none;
+      background:none;
+      border:0;
+      color:var(--text);
+      font-size:1.7rem;
+      cursor:pointer;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding:140px 0 90px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(215,168,74,.13), transparent 30%),
+        radial-gradient(circle at 10% 70%, rgba(93,157,115,.10), transparent 30%);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .hero h1{
+      font-size:clamp(3rem,7vw,6.8rem);
+      line-height:.95;
+      letter-spacing:-4px;
+      margin-bottom:28px;
+      max-width:900px;
+    }
+
+    .hero h1 span{
+      color:var(--gold-light);
+    }
+
+    .hero-text{
+      color:var(--muted);
+      max-width:650px;
+      font-size:1.1rem;
+      margin-bottom:32px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    .hero-card{
+      min-height:460px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:
+        linear-gradient(145deg,rgba(215,168,74,.16),transparent 42%),
+        linear-gradient(330deg,rgba(93,157,115,.12),transparent 45%),
+        var(--card);
+      box-shadow:var(--shadow);
+      padding:35px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .hero-card::before{
+      content:"DMP";
+      position:absolute;
+      top:20px;
+      right:-15px;
+      font-size:9rem;
+      font-weight:900;
+      color:rgba(255,255,255,.025);
+      line-height:1;
+    }
+
+    .hero-card h3{
+      font-size:2rem;
+      margin-bottom:10px;
+    }
+
+    .hero-card p{color:var(--muted)}
+
+    .hero-badge{
+      display:inline-block;
+      width:max-content;
+      padding:7px 12px;
+      border:1px solid rgba(215,168,74,.4);
+      border-radius:999px;
+      color:var(--gold-light);
+      font-size:.75rem;
+      margin-bottom:16px;
+    }
+
+    /* STATS */
+    .stats{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      padding:30px 0;
+      background:#0c0c0c;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+
+    .stat{
+      text-align:center;
+      padding:12px;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:1.25rem;
+      color:var(--gold-light);
+      margin-bottom:4px;
+    }
+
+    .stat span{color:var(--muted);font-size:.88rem}
+
+    /* SERVICES */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+      margin-top:55px;
+    }
+
+    .service-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:32px;
+      transition:.3s ease;
+    }
+
+    .service-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(215,168,74,.45);
+      box-shadow:var(--shadow);
+    }
+
+    .service-number{
+      color:var(--gold-light);
+      font-weight:900;
+      font-size:.8rem;
+      letter-spacing:2px;
+    }
+
+    .service-card h3{
+      font-size:1.6rem;
+      margin:12px 0;
+    }
+
+    .service-card p{color:var(--muted);margin-bottom:20px}
+
+    .service-card ul{
+      list-style:none;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:9px 15px;
+    }
+
+    .service-card li{
+      color:#ddd7cc;
+      font-size:.9rem;
+    }
+
+    .service-card li::before{
+      content:"✓";
+      color:var(--green);
+      margin-right:7px;
+      font-weight:900;
+    }
+
+    /* PORTFOLIO */
+    .portfolio-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:30px;
+      margin-bottom:35px;
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:30px;
+    }
+
+    .filter{
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--muted);
+      padding:9px 15px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:.25s;
+    }
+
+    .filter:hover,
+    .filter.active{
+      color:#111;
+      background:var(--gold);
+      border-color:var(--gold);
+    }
+
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .project{
+      min-height:310px;
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--card);
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      padding:24px;
+      background-size:cover;
+      background-position:center;
+      isolation:isolate;
+    }
+
+    .project::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(transparent 20%,rgba(0,0,0,.9));
+      z-index:-1;
+    }
+
+    .project:nth-child(1){background-image:linear-gradient(135deg,#2b2418,#101010)}
+    .project:nth-child(2){background-image:linear-gradient(135deg,#17352a,#0d1110)}
+    .project:nth-child(3){background-image:linear-gradient(135deg,#292929,#111)}
+    .project:nth-child(4){background-image:linear-gradient(135deg,#392b1b,#121212)}
+    .project:nth-child(5){background-image:linear-gradient(135deg,#1b3027,#111)}
+    .project:nth-child(6){background-image:linear-gradient(135deg,#302530,#101010)}
+
+    .project-content h3{font-size:1.25rem;margin-bottom:4px}
+    .project-content p{color:#bdb7ad;font-size:.85rem}
+
+    .project[data-hidden="true"]{display:none}
+
+    /* ABOUT */
+    .about-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:65px;
+      align-items:center;
+    }
+
+    .about-visual{
+      min-height:480px;
+      border-radius:30px;
+      border:1px solid var(--line);
+      background:
+        radial-gradient(circle at 30% 30%,rgba(215,168,74,.20),transparent 30%),
+        radial-gradient(circle at 70% 70%,rgba(93,157,115,.16),transparent 35%),
+        #111;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .about-logo{
+      font-size:clamp(5rem,13vw,10rem);
+      font-weight:900;
+      letter-spacing:-8px;
+      color:rgba(255,255,255,.07);
+    }
+
+    .about-logo-img{
+      width:min(70%,340px);
+      height:auto;
+    }
+
+    .about-content p{
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .values{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .value{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:15px;
+      background:var(--card);
+    }
+
+    .value strong{display:block;margin-bottom:4px}
+    .value span{font-size:.85rem;color:var(--muted)}
+
+    /* PROCESS */
+    .process-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:12px;
+      margin-top:50px;
+    }
+
+    .process{
+      padding:25px 18px;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+    }
+
+    .process span{
+      color:var(--gold-light);
+      font-size:.75rem;
+      font-weight:900;
+    }
+
+    .process h3{font-size:1.05rem;margin:10px 0}
+    .process p{color:var(--muted);font-size:.84rem}
+
+    /* CONTACT */
+    .contact-box{
+      display:grid;
+      grid-template-columns:1fr .9fr;
+      gap:40px;
+      padding:50px;
+      border:1px solid var(--line);
+      border-radius:30px;
+      background:
+        radial-gradient(circle at 100% 0%,rgba(215,168,74,.13),transparent 35%),
+        var(--card);
+    }
+
+    .contact-box p{color:var(--muted);max-width:600px}
+
+    .contact-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+
+    .contact-info{
+      display:grid;
+      gap:15px;
+    }
+
+    .contact-item{
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(255,255,255,.02);
+    }
+
+    .contact-item small{
+      display:block;
+      color:var(--gold-light);
+      text-transform:uppercase;
+      letter-spacing:1px;
+      margin-bottom:4px;
+    }
+
+    .contact-item span{color:#ddd7cc}
+
+    /* FOOTER */
+    footer{
+      border-top:1px solid var(--line);
+      padding:45px 0 25px;
+      background:#070707;
+    }
+
+    .footer-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:30px;
+      padding-bottom:35px;
+    }
+
+    .footer-brand p{
+      color:var(--muted);
+      max-width:360px;
+      margin-top:10px;
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:20px;
+    }
+
+    .footer-links a{color:var(--muted);font-size:.9rem}
+    .footer-links a:hover{color:var(--gold-light)}
+
+    .copyright{
+      border-top:1px solid var(--line);
+      padding-top:20px;
+      color:#777;
+      font-size:.8rem;
+      display:flex;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero-grid,
+      .about-grid,
+      .contact-box{
+        grid-template-columns:1fr;
+      }
+
+      .hero-card{min-height:320px}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .process-grid{grid-template-columns:repeat(3,1fr)}
+    }
+
+    @media(max-width:720px){
+      .section{padding:75px 0}
+
+      .menu-btn{display:block}
+
+      .nav-links{
+        display:none;
+        position:absolute;
+        top:76px;
+        left:0;
+        width:100%;
+        padding:20px 5%;
+        background:rgba(9,9,9,.98);
+        border-bottom:1px solid var(--line);
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
+      }
+
+      .nav-links.open{display:flex}
+      .nav-cta{display:none}
+
+      .hero h1{letter-spacing:-2px}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .services-grid,
+      .portfolio-grid,
+      .process-grid{
+        grid-template-columns:1fr;
+      }
+
+      .service-card ul{grid-template-columns:1fr}
+      .portfolio-head{display:block}
+      .values{grid-template-columns:1fr}
+      .contact-box{padding:30px 22px}
+      .footer-top,
+      .copyright{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="logo"><img src="assets/logo.png" alt="DMP Creator" class="logo-img"></a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="apropos.html" class="active">À propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <a href="contact.html" class="btn btn-primary nav-cta">Demander un devis</a>
+    </div>
+  </header>
+
+  <main>
+<!-- A PROPOS -->
+    <section class="section" id="apropos">
+      <div class="container about-grid">
+
+        <div class="about-visual">
+          <img src="assets/logo.png" alt="DMP Creator" class="about-logo-img">
+        </div>
+
+        <div class="about-content">
+          <div class="eyebrow">À propos de DMP Creator</div>
+          <h2 class="section-title">
+            Derrière chaque image, il y a une intention.
+          </h2>
+
+          <p>
+            DMP Creator est une agence créative spécialisée dans la création
+            de contenus visuels et digitaux.
+          </p>
+
+          <p>
+            Nous transformons les idées, les projets et les ambitions en
+            images, vidéos et designs conçus pour communiquer efficacement.
+          </p>
+
+          <p>
+            Notre approche combine créativité, storytelling, design et
+            nouvelles technologies afin de proposer des contenus modernes
+            et adaptés aux besoins de chaque client.
+          </p>
+
+          <div class="values">
+            <div class="value">
+              <strong>Créativité</strong>
+              <span>Des concepts pensés pour vous différencier.</span>
+            </div>
+            <div class="value">
+              <strong>Qualité</strong>
+              <span>Une attention portée à chaque détail.</span>
+            </div>
+            <div class="value">
+              <strong>Storytelling</strong>
+              <span>Des contenus qui racontent quelque chose.</span>
+            </div>
+            <div class="value">
+              <strong>Innovation</strong>
+              <span>Des outils modernes au service de vos idées.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+<!-- PROCESSUS -->
+    <section class="section">
+      <div class="container">
+
+        <div class="eyebrow">Notre méthode</div>
+        <h2 class="section-title">De l'idée à la réalisation.</h2>
+        <p class="section-intro">
+          Un processus simple et transparent pour transformer votre projet
+          en contenu professionnel.
+        </p>
+
+        <div class="process-grid">
+
+          <div class="process">
+            <span>01</span>
+            <h3>Échange</h3>
+            <p>Nous discutons de votre besoin, de votre objectif et de votre audience.</p>
+          </div>
+
+          <div class="process">
+            <span>02</span>
+            <h3>Concept</h3>
+            <p>Nous imaginons la direction créative adaptée à votre projet.</p>
+          </div>
+
+          <div class="process">
+            <span>03</span>
+            <h3>Création</h3>
+            <p>Nous réalisons les photos, vidéos ou designs nécessaires.</p>
+          </div>
+
+          <div class="process">
+            <span>04</span>
+            <h3>Révision</h3>
+            <p>Nous intégrons vos retours et finalisons le contenu.</p>
+          </div>
+
+          <div class="process">
+            <span>05</span>
+            <h3>Livraison</h3>
+            <p>Votre contenu final est livré dans les formats adaptés à vos plateformes.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="logo">DMP <span>CREATOR</span></div>
+          <p>
+            Nous créons l'image de vos ambitions.
+            Vidéo, photographie, design graphique et création de contenu.
+          </p>
+        </div>
+
+        <nav class="footer-links">
+          <a href="index.html">Accueil</a>
+          <a href="services.html">Services</a>
+          <a href="portfolio.html">Portfolio</a>
+          <a href="apropos.html">À propos</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+      </div>
+
+      <div class="copyright">
+        <span>© 2026 DMP Creator — Tous droits réservés.</span>
+        <span>Création vidéo • Design • Photographie • Contenu digital</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+    document.querySelectorAll("#navLinks a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+  </script>
+
+</body>
+</html>
